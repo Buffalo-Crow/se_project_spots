@@ -13,9 +13,7 @@
   grid-template-columns: repeat(auto-fit, 413px);
   justify-content: center;
 }
-.cards:last-child {
-  padding-bottom: 0px;
-}
+
 @media screen and (max-width: 627px) {
   .cards {
     padding-bottom: 20px;
