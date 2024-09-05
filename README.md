@@ -16,6 +16,8 @@ Below is a screenshot of the Project Spots
 
 [View my project here](https://buffalo-crow.github.io/se_project_spots/)
 
+[Watch the video of my project here](https://drive.google.com/file/d/11stU56eic0ULXk3OWozURRnLUdT0AaGn/view?usp=sharing)
+
 **Tools**
 
 - Figma - This was the first time I used Figma for reading the design work. It was easy to use and reference for exact measurements and requirements for the project. I am excited to learn more about working with Figma in the future.
