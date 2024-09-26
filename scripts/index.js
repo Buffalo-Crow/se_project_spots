@@ -38,16 +38,18 @@ const editModalDescriptionInput = editModal.querySelector(
 );
 
 const cardTemplate = document.querySelector("#card-template");
+const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
-  console.log(data);
   const cardElement = cardTemplate.content
     .querySelector(".card")
     .cloneNode(true);
 
   const cardNameEl = cardElement.querySelector(".card__caption");
-
+  const cardImageEl = cardElement.querySelector(".card__image");
   cardNameEl.textContent = data.name;
+  cardImageEl.src = data.link;
+  cardImageEl.alt = data.name;
 
   return cardElement;
 }
@@ -74,5 +76,6 @@ editModalCloseBtn.addEventListener("click", closeModal);
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 
 for (let i = 0; i < initialCards.length; i++) {
-  getCardElement(initialCards[i]);
+  const cardElement = getCardElement(initialCards[i]);
+  cardsList.prepend(cardElement);
 }
