@@ -58,9 +58,19 @@ function getCardElement(data) {
 
   const cardNameEl = cardElement.querySelector(".card__caption");
   const cardImageEl = cardElement.querySelector(".card__image");
+  const cardLikeButton = cardElement.querySelector(".card__like-button");
+  //const cardDeleteButton = cardElement.querSelector(".card__delete-button");
+
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
+
+  cardLikeButton.addEventListener("click", () => {
+    cardLikeButton.classList.toggle("card__like-button_liked");
+  });
+
+  //add Event Listener for deleteButton
+  // the Handler should remove the card from the DOM
 
   return cardElement;
 }
@@ -88,6 +98,7 @@ function handleCardFormSubmit(evt) {
   closeModal(cardModal);
 }
 
+//Event Listeners
 profileButtonEdit.addEventListener("click", () => {
   editModalDescriptionInput.value = profileDescription.textContent;
   editModalNameInput.value = profileName.textContent;
