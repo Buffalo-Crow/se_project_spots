@@ -27,6 +27,15 @@
   box-sizing: border-box;
 }
 
+.modal__container_type_preview {
+  padding: 0;
+}
+
+.modal__image {
+  width: 100%;
+  radius: 8px;
+}
+
 .modal__close-button {
   position: absolute;
   top: 32px;
@@ -38,6 +47,16 @@
   border: none;
   opacity: 40%;
   background-color: transparent;
+}
+
+.modal__close-button-type-preview {
+  background-image: url(../images/Close-Icon-Light.svg);
+  height: 40px;
+  width: 40px;
+  border-style: none;
+  background-color: transparent;
+  position: absolute;
+  right: -12.5px;
 }
 
 .modal__close-button:hover {
