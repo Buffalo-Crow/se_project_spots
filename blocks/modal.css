@@ -34,6 +34,9 @@
 .modal__image {
   width: 100%;
   radius: 8px;
+  object-fit: contain;
+  max-width: 80vw;
+  max-height: 80vh;
 }
 
 .modal__close-button {
@@ -56,7 +59,9 @@
   border-style: none;
   background-color: transparent;
   position: absolute;
-  right: -12.5px;
+  top: 0;
+  right: 52.5px;
+  opacity: 1;
 }
 
 .modal__close-button:hover {

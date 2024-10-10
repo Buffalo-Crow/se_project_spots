@@ -23,6 +23,10 @@ const initialCards = [
     name: "Mountain house",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
+  {
+    name: "Golden Gate Bridge",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
+  },
 ];
 
 //Profile Elements
@@ -46,6 +50,12 @@ const cardForm = cardModal.querySelector(".modal__form");
 const closeModalButton = cardModal.querySelector(".modal__close-button");
 const cardCaptionInput = cardModal.querySelector("#add-card-caption-input");
 const cardUrlInput = cardModal.querySelector("#add-card-image-input");
+const previewModal = document.querySelector("#preview-modal");
+const previewModalImageEl = previewModal.querySelector(".modal__image");
+const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
+const closePreviewModalButton = previewModal.querySelector(
+  ".modal__close-button-type-preview"
+);
 
 //Card Elements
 const cardTemplate = document.querySelector("#card-template");
@@ -73,8 +83,12 @@ function getCardElement(data) {
     cardElement.remove();
   });
 
-  //add Event Listener for deleteButton
-  // the Handler should remove the card from the DOM
+  cardImageEl.addEventListener("click", () => {
+    openModal(previewModal);
+    previewModalImageEl.src = data.link;
+    previewModalImageEl.alt = data.name;
+    previewModalCaptionEl.textContent = data.name;
+  });
 
   return cardElement;
 }
@@ -119,6 +133,10 @@ cardModalButton.addEventListener("click", () => {
 
 closeModalButton.addEventListener("click", () => {
   closeModal(cardModal);
+});
+
+closePreviewModalButton.addEventListener("click", () => {
+  closeModal(previewModal);
 });
 
 //event listeners for forms
