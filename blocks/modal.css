@@ -167,7 +167,7 @@
   }
 
   .modal__image {
-    width: 288px;
+    max-width: fit-content;
   }
 
   .modal__caption {
