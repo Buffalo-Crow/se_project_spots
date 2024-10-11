@@ -165,4 +165,21 @@
   .modal__submit-button {
     width: 100%;
   }
+
+  .modal__image {
+    width: 288px;
+  }
+
+  .modal__caption {
+    font-size: 16px;
+    line-height: 19.2px;
+    margin-bottom: 0;
+    margin-top: 8.43px;
+  }
+
+  .modal__close-button-type-preview {
+    position: absolute;
+    top: 41px;
+    right: 16px;
+  }
 }
