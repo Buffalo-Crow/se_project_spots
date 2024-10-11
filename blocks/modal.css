@@ -11,10 +11,14 @@
   justify-content: center;
   visibility: hidden;
   padding: 0 20px;
+  opacity: 0;
+  transition: visibility 0s 0.8s, opacity 0.8s ease-in-out;
 }
 
 .modal_opened {
   visibility: visible;
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
 }
 
 .modal__container {
@@ -29,14 +33,29 @@
 
 .modal__container_type_preview {
   padding: 0;
+  position: relative;
 }
 
 .modal__image {
   width: 100%;
-  radius: 8px;
+  border-radius: 8px;
   object-fit: contain;
   max-width: 80vw;
   max-height: 80vh;
+  display: block;
+}
+
+.modal__caption {
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  background-color: #212121;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  width: auto;
+  border-radius: 8px;
+  padding: 4px 8px;
+  display: inline-block;
 }
 
 .modal__close-button {
@@ -59,8 +78,8 @@
   border-style: none;
   background-color: transparent;
   position: absolute;
-  top: 0;
-  right: 52.5px;
+  top: unset;
+  right: -50px;
   opacity: 1;
 }
 
