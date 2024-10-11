@@ -114,6 +114,7 @@ function handleCardFormSubmit(evt) {
   const cardEl = getCardElement(inputValue);
   cardsList.prepend(cardEl);
   closeModal(cardModal);
+  evt.target.reset(cardModal);
 }
 
 //Event Listeners

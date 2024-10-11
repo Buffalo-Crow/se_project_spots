@@ -31,7 +31,7 @@
   box-sizing: border-box;
 }
 
-.modal__container_type_preview {
+.modal__container-type-preview {
   padding: 0;
   position: relative;
 }
@@ -121,7 +121,7 @@
 
 .modal__input::placeholder {
   color: #212121;
-  opacity: 0.3%;
+  opacity: 1;
 }
 
 .modal__input:hover {
@@ -179,7 +179,7 @@
 
   .modal__close-button-type-preview {
     position: absolute;
-    top: 41px;
-    right: 16px;
+    top: -49px;
+    right: -6px;
   }
 }
