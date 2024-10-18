@@ -130,9 +130,9 @@ profileButtonEdit.addEventListener("click", () => {
   openModal(editModal);
 });
 
-//editModalCloseBtn.addEventListener("click", () => {
-// closeModal(editModal);
-//});
+editModalCloseBtn.addEventListener("click", () => {
+  closeModal(editModal);
+});
 
 cardModalButton.addEventListener("click", () => {
   openModal(cardModal);
@@ -160,4 +160,4 @@ initialCards.forEach((item) => {
 //closeButtons.forEach((button) => {
 // const popup = button.closest(".modal__close");
 // button.addEventListener("click", () => close(popup));
-//});
+//});  work on creating a universal closer.
