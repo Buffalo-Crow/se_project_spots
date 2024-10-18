@@ -37,12 +37,13 @@ const cardModalButton = document.querySelector(".profile__button-new");
 
 // Form Elements
 const editModal = document.querySelector("#edit-modal");
-const editFormElement = editModal.querySelector(".modal__form");
+const editFormElement = document.forms["edit-profile"];
 const editModalCloseBtn = editModal.querySelector(".modal__close-button");
 const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
+const closeButtons = document.querySelectorAll(".modal__close");
 
 //Card Elements
 const cardModal = document.querySelector("#add-card-modal");
@@ -117,6 +118,11 @@ function handleCardFormSubmit(evt) {
   evt.target.reset(cardModal);
 }
 
+//function renderCard(item, method = "append") {
+//const cardElement = getCardElement(item);
+//  cardsList[method](cardElement);
+//} make this function work and use it for the initialCards array
+
 //Event Listeners
 profileButtonEdit.addEventListener("click", () => {
   editModalDescriptionInput.value = profileDescription.textContent;
@@ -124,9 +130,9 @@ profileButtonEdit.addEventListener("click", () => {
   openModal(editModal);
 });
 
-editModalCloseBtn.addEventListener("click", () => {
-  closeModal(editModal);
-});
+//editModalCloseBtn.addEventListener("click", () => {
+// closeModal(editModal);
+//});
 
 cardModalButton.addEventListener("click", () => {
   openModal(cardModal);
@@ -147,5 +153,11 @@ cardForm.addEventListener("submit", handleCardFormSubmit);
 
 initialCards.forEach((item) => {
   const cardEl = getCardElement(item);
+  // renderCard(cardEl, (method = "append")); refactor and make it work here :)
   cardsList.append(cardEl);
 });
+
+//closeButtons.forEach((button) => {
+// const popup = button.closest(".modal__close");
+// button.addEventListener("click", () => close(popup));
+//});
