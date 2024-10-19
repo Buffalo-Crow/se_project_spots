@@ -63,7 +63,7 @@
         </section>
       </main>
       <footer class="footer">
-        <p class="footer__copyright">2024 &copy; Jordan Miller</p>
+        <p class="footer__copyright">Jordan "Crow" Miller 2024 &copy;</p>
       </footer>
       <div class="modal" id="edit-modal">
         <div class="modal__container">
@@ -77,8 +77,11 @@
               >Name<input
                 id="profile-name-input"
                 type="text"
+                minlength="2"
+                maxlength="40"
                 class="modal__input"
                 placeholder="Type your name"
+                required
               />
             </label>
             <label for="profile-description-input" class="modal__label"
@@ -86,8 +89,11 @@
               <input
                 id="profile-description-input"
                 type="text"
+                minlength="2"
+                maxlength="200"
                 class="modal__input"
                 placeholder="Describe yourself"
+                required
               />
             </label>
             <button type="submit" class="modal__submit-button">Save</button>
@@ -107,6 +113,7 @@
                 id="add-card-image-input"
                 name="image-link"
                 type="url"
+                required
                 class="modal__input"
                 placeholder="Paste a link to the picture"
               />
@@ -117,8 +124,11 @@
                 id="add-card-caption-input"
                 name="caption-input"
                 type="text"
+                required
                 class="modal__input"
                 placeholder="Type your caption"
+                minlength="2"
+                maxlength="30"
               />
             </label>
             <button type="submit" class="modal__submit-button">Save</button>
@@ -128,7 +138,10 @@
     </div>
     <div class="modal" id="preview-modal">
       <div class="modal__container-type-preview">
-        <button class="modal__close modal__close-button-type-preview"></button>
+        <button
+          type="button"
+          class="modal__close modal__close-button-type-preview"
+        ></button>
         <img src="" alt="" class="modal__image" />
         <p class="modal__caption"></p>
       </div>

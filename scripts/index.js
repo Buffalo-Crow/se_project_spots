@@ -118,10 +118,10 @@ function handleCardFormSubmit(evt) {
   evt.target.reset(cardModal);
 }
 
-//function renderCard(item, method = "append") {
+//function renderCard(item, method) {
 //const cardElement = getCardElement(item);
-//  cardsList[method](cardElement);
-//} make this function work and use it for the initialCards array
+// cardsList[append](cardElement);
+//}
 
 //Event Listeners
 profileButtonEdit.addEventListener("click", () => {
