@@ -156,8 +156,3 @@ initialCards.forEach((item) => {
   // renderCard(cardEl, (method = "append")); refactor and make it work here :)
   cardsList.append(cardEl);
 });
-
-//closeButtons.forEach((button) => {
-// const popup = button.closest(".modal__close");
-// button.addEventListener("click", () => close(popup));
-//});  work on creating a universal closer.
