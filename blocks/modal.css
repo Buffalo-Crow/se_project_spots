@@ -153,7 +153,7 @@
   color: #fcf5e5;
 }
 
-.modal__submit-button_disabled {
+.modal__submit-button-disabled {
   background-color: #212121;
   opacity: 50%;
 }

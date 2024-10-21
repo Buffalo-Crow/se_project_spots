@@ -72,6 +72,10 @@
 }
 
 .card__delete-button:hover {
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
   background-image: url(../images/card_delete_button_hover.png);
   transition: 0.5s;
 }
