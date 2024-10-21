@@ -1,17 +1,13 @@
 const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorMessageId = inputElement.id + "-error";
-  const errorElement = formElement.querySelector(`#${errorMessageId} `);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add("modal__error");
-  inputElement.classList.add("modal__input-error");
+  const errorMessageId = formElement.querySelector(`#${inputElement.id}-error`);
+  errorMessageId.textContent = errorMessage;
+  inputElement.classList.add("modal__input_error");
 };
 
 const hideInputError = (formElement, inputElement) => {
-  const errorMessageId = inputElement.id + "error";
-  const errorElement = formElement.querySelector(`${errorMessageId}`);
-  errorElement.textContent = "";
-  errorElement.classList.remove("modal__error");
-  inputElement.classList.remove("modal__input-error");
+  const errorMessageId = formElement.querySelector(`#${inputElement.id}-error`);
+  errorMessageId.textContent = "";
+  inputElement.classList.remove("modal__input_error");
 };
 
 const checkInputValidity = (formElement, inputElement) => {
@@ -22,9 +18,18 @@ const checkInputValidity = (formElement, inputElement) => {
   }
 };
 
+const hasInvalidInput = (inputList) => {
+  return inputList.some((input) => {
+    return !input.validity.valid;
+  });
+};
+
 const toggleButtonState = (inputList, buttonElement) => {
-  const isFormValid = inputList.every((input) => input.validity.valid);
-  buttonElement.disabled = !isFormValid;
+  if (hasInvalidInput(inputList));
+  buttonElement.disabled = true;
+  //buttonElement.classList.add(); add button element to make it gray
+  //} else{
+  //remove the disabled class;
 };
 
 const setEventListeners = (formElement) => {

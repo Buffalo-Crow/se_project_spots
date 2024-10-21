@@ -119,8 +119,8 @@
   margin-top: 8px;
 }
 
-.modal__input-error {
-  border-color: #ff0000;
+.modal__input_error {
+  border: 1px solid #ff0000;
 }
 
 .modal__error {
