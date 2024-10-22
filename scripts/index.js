@@ -48,7 +48,7 @@ const closeButtons = document.querySelectorAll(".modal__close");
 
 //Card Elements
 const cardModal = document.querySelector("#add-card-modal");
-const cardForm = cardModal.querySelector(".modal__form");
+const cardForm = document.forms["add-card-form"];
 const closeModalButton = cardModal.querySelector(".modal__close-button");
 const cardCaptionInput = cardModal.querySelector("#add-card-caption-input");
 const cardUrlInput = cardModal.querySelector("#add-card-image-input");
@@ -98,14 +98,14 @@ function getCardElement(data) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", keyHandler);
-  modal.addEventListener("mousedown", keyHandler);
+  document.addEventListener("keydown", handleModalClose);
+  modal.addEventListener("mousedown", handleModalClose);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", keyHandler);
-  modal.removeEventListener("mousedown", keyHandler);
+  document.removeEventListener("keydown", handleModalClose);
+  modal.removeEventListener("mousedown", handleModalClose);
 }
 
 function handleEditFormSubmit(evt) {
@@ -129,7 +129,6 @@ function handleCardFormSubmit(evt) {
 profileButtonEdit.addEventListener("click", () => {
   editModalDescriptionInput.value = profileDescription.textContent;
   editModalNameInput.value = profileName.textContent;
-
   openModal(editModal);
 });
 
@@ -159,7 +158,7 @@ initialCards.forEach((item) => {
   cardsList.append(cardEl);
 });
 
-function keyHandler(event) {
+function handleModalClose(event) {
   if (event.key === "Escape" && event.type === "keydown") {
     const openedModalPopUp = document.querySelector(".modal_opened");
     closeModal(openedModalPopUp);
