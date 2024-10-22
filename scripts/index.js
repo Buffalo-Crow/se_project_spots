@@ -99,11 +99,13 @@ function getCardElement(data) {
 function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", keyHandler);
+  modal.addEventListener("mousedown", keyHandler);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", keyHandler);
+  modal.removeEventListener("mousedown", keyHandler);
 }
 
 function handleEditFormSubmit(evt) {
@@ -120,13 +122,8 @@ function handleCardFormSubmit(evt) {
   cardsList.prepend(cardEl);
   closeModal(cardModal);
   disableButton(cardSubmitButton, settings);
-  evt.target.reset(cardModal);
+  evt.target.reset();
 }
-
-//function renderCard(item, method) {
-//const cardElement = getCardElement(item);
-// cardsList[append](cardElement);
-//}
 
 //Event Listeners
 profileButtonEdit.addEventListener("click", () => {
@@ -159,12 +156,15 @@ cardForm.addEventListener("submit", handleCardFormSubmit);
 
 initialCards.forEach((item) => {
   const cardEl = getCardElement(item);
-  // renderCard(cardEl, (method = "append")); refactor and make it work here :)
   cardsList.append(cardEl);
 });
 
-function keyHandler(evt) {
-  if (evt.key === "Escape") {
-    closeModal();
+function keyHandler(event) {
+  if (event.key === "Escape" && event.type === "keydown") {
+    const openedModalPopUp = document.querySelector(".modal_opened");
+    closeModal(openedModalPopUp);
+  }
+  if (event.target.classList.contains("modal")) {
+    closeModal(event.target);
   }
 }
