@@ -98,10 +98,12 @@ function getCardElement(data) {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", keyHandler);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", keyHandler);
 }
 
 function handleEditFormSubmit(evt) {
@@ -160,3 +162,9 @@ initialCards.forEach((item) => {
   // renderCard(cardEl, (method = "append")); refactor and make it work here :)
   cardsList.append(cardEl);
 });
+
+function keyHandler(evt) {
+  if (evt.key === "Escape") {
+    closeModal();
+  }
+}
