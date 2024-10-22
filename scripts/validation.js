@@ -11,7 +11,8 @@ const showInputError = (formElement, inputElement, config) => {
   const errorMessageId = formElement.querySelector(`#${inputElement.id}-error`);
   if (errorMessageId) {
     errorMessageId.textContent = inputElement.validationMessage;
-    inputElement.classList.add(config.inputErrorClass);
+    inputElement.classList.add(config, inputErrorClass);
+    inputElement.classList.add(config.errorClass);
   }
 };
 
@@ -19,6 +20,7 @@ const hideInputError = (formElement, inputElement, config) => {
   const errorMessageId = formElement.querySelector(`#${inputElement.id}-error`);
   if (errorMessageId) {
     errorMessageId.textContent = "";
+    inputElement.classList.remove(config.errorClass);
     inputElement.classList.remove(config.inputErrorClass);
   }
 };
@@ -39,14 +41,14 @@ const hasInvalidInput = (inputList) => {
 
 const toggleButtonState = (inputList, buttonElement, config) => {
   if (hasInvalidInput(inputList)) {
-    disableButton(buttonElement);
+    disableButton(buttonElement, config);
   } else {
     buttonElement.disabled = false;
     buttonElement.classList.remove(config.inactiveButtonClass);
   }
 };
 
-const disableButton = (buttonElement) => {
+const disableButton = (buttonElement, config) => {
   buttonElement.classList.add(config.inactiveButtonClass);
 };
 
