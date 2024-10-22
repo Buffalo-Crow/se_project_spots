@@ -124,12 +124,11 @@ function handleCardFormSubmit(evt) {
   disableButton(cardSubmitButton, settings);
   evt.target.reset();
 }
-
-//Event Listeners
 profileButtonEdit.addEventListener("click", () => {
   editModalDescriptionInput.value = profileDescription.textContent;
   editModalNameInput.value = profileName.textContent;
   openModal(editModal);
+  resetValidation(formElement, inputList);
 });
 
 editModalCloseBtn.addEventListener("click", () => {

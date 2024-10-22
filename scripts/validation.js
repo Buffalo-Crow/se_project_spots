@@ -11,8 +11,8 @@ const showInputError = (formElement, inputElement, config) => {
   const errorMessageId = formElement.querySelector(`#${inputElement.id}-error`);
   if (errorMessageId) {
     errorMessageId.textContent = inputElement.validationMessage;
-    inputElement.classList.add(config, inputErrorClass);
-    inputElement.classList.add(config.errorClass);
+    inputElement.classList.add(config.inputErrorClass);
+    errorMessageId.classList.add(config.errorClass);
   }
 };
 
@@ -20,16 +20,16 @@ const hideInputError = (formElement, inputElement, config) => {
   const errorMessageId = formElement.querySelector(`#${inputElement.id}-error`);
   if (errorMessageId) {
     errorMessageId.textContent = "";
-    inputElement.classList.remove(config.errorClass);
+    errorMessageId.classList.remove(config.errorClass);
     inputElement.classList.remove(config.inputErrorClass);
   }
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, config);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement, config);
   }
 };
 
@@ -54,7 +54,7 @@ const disableButton = (buttonElement, config) => {
 
 const resetValidation = (formElement, inputList) => {
   inputList.forEach((input) => {
-    hideInputError(formElement, input);
+    hideInputError(formElement, input, config);
   });
 };
 
