@@ -17,10 +17,10 @@ const showInputError = (formElement, inputElement, config) => {
 };
 
 const hideInputError = (formElement, inputElement, config) => {
-  const errorMessageId = formElement.querySelector(`#${inputElement.id}-error`);
-  if (errorMessageId) {
-    errorMessageId.textContent = "";
-    errorMessageId.classList.remove(config.errorClass);
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  if (errorElement) {
+    errorElement.textContent = "";
+    errorElement.classList.remove(config.errorClass);
     inputElement.classList.remove(config.inputErrorClass);
   }
 };
