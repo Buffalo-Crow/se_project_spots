@@ -1,5 +1,18 @@
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Poppins-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  src: url(../fonts/Poppins-Medium.ttf) format ("truetype");
+}
+
 @import url(../vendor/normalize.css);
-@import url(../vendor/fonts.css);
 @import url(../blocks/page.css);
 @import url(../blocks/header.css);
 @import url(../blocks/content.css);

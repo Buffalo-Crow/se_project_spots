@@ -1,3 +1,8 @@
+import { enableValidation } from "../scripts/validation.js";
+import { settings } from "../scripts/validation.js";
+import { resetValidation } from "../scripts/validation.js";
+import "./index.css";
+
 const initialCards = [
   {
     name: "Val Thorens",
@@ -173,3 +178,5 @@ function handleModalClose(event) {
     closeModal(event.target);
   }
 }
+
+enableValidation(settings);
