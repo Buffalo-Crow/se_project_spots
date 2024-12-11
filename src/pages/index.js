@@ -1,9 +1,11 @@
 import { enableValidation } from "../scripts/validation.js";
 import { settings } from "../scripts/validation.js";
 import { resetValidation } from "../scripts/validation.js";
+import { disableButton } from "../scripts/validation.js";
 import "./index.css";
+import { Api } from "../utils/Api.js";
 
-const initialCards = [
+/*const initialCards = [
   {
     name: "Val Thorens",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
@@ -33,12 +35,45 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
   },
 ];
+*/
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "54dfd835-b3bb-4c3b-9ed6-5693cba3f772",
+    "Content-Type": "application/json",
+  },
+});
+
+//Destructure the second item in the callback of the .then()
+
+api
+  .getAppInfo()
+  .then(([cards]) => {
+    cards.forEach((item) => {
+      const cardEl = getCardElement(item);
+      cardsList.append(cardEl);
+    });
+    //handle the users information
+  })
+  .catch(console.error);
+
+api
+  .getUserInfo()
+  .then((userdata) => {
+    console.log(userdata);
+    profileName.textContent = userdata.name;
+    profileDescription.textContent = userdata.about;
+    profileAvatar.src = userdata.avatar;
+  })
+  .catch((error) => console.error(error));
 
 //Profile Elements
 const profileButtonEdit = document.querySelector(".profile__button-edit");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const cardModalButton = document.querySelector(".profile__button-new");
+const profileAvatar = document.querySelector(".profile__avatar");
 
 // Form Elements
 const editModal = document.querySelector("#edit-modal");
@@ -120,9 +155,17 @@ function closeModal(modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
+  api
+    .editUserInfo({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 function handleCardFormSubmit(evt) {
@@ -163,11 +206,6 @@ closePreviewModalButton.addEventListener("click", () => {
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 
 cardForm.addEventListener("submit", handleCardFormSubmit);
-
-initialCards.forEach((item) => {
-  const cardEl = getCardElement(item);
-  cardsList.append(cardEl);
-});
 
 function handleModalClose(event) {
   if (event.key === "Escape" && event.type === "keydown") {
