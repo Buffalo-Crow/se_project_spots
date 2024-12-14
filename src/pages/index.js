@@ -5,38 +5,6 @@ import { disableButton } from "../scripts/validation.js";
 import "./index.css";
 import { Api } from "../utils/Api.js";
 
-/*const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-  {
-    name: "Golden Gate Bridge",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/7-photo-by-griffin-wooldridge-from-pexels.jpg",
-  },
-];
-*/
-
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -45,28 +13,19 @@ const api = new Api({
   },
 });
 
-//Destructure the second item in the callback of the .then()
-
 api
   .getAppInfo()
-  .then(([cards]) => {
+  .then(([cards, userInfo]) => {
     cards.forEach((item) => {
       const cardEl = getCardElement(item);
       cardsList.append(cardEl);
     });
-    //handle the users information
+
+    profileName.textContent = userInfo.name;
+    profileDescription.textContent = userInfo.about;
+    profileAvatar.src = userInfo.avatar;
   })
   .catch(console.error);
-
-api
-  .getUserInfo()
-  .then((userdata) => {
-    console.log(userdata);
-    profileName.textContent = userdata.name;
-    profileDescription.textContent = userdata.about;
-    profileAvatar.src = userdata.avatar;
-  })
-  .catch((error) => console.error(error));
 
 //Profile Elements
 const profileButtonEdit = document.querySelector(".profile__button-edit");
@@ -74,6 +33,13 @@ const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const cardModalButton = document.querySelector(".profile__button-new");
 const profileAvatar = document.querySelector(".profile__avatar");
+
+// Avatar Modal Elements
+const avatarEditModal = document.querySelector("#avatar-modal");
+const avatarModalBtn = document.querySelector(".profile__avatar-btn");
+const avatarCloseButton = avatarEditModal.querySelector(".modal__close-button");
+const avatarUrlInput = avatarEditModal.querySelector("#profile-avatar-input");
+const avatarForm = avatarEditModal.querySelector("#avatar-edit-form");
 
 // Form Elements
 const editModal = document.querySelector("#edit-modal");
@@ -84,31 +50,33 @@ const editModalDescriptionInput = editModal.querySelector(
   "#profile-description-input"
 );
 
-const closeButtons = document.querySelectorAll(".modal__close");
-
 //Card Elements
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = document.forms["add-card-form"];
 const closeModalButton = cardModal.querySelector(".modal__close-button");
 const cardCaptionInput = cardModal.querySelector("#add-card-caption-input");
 const cardUrlInput = cardModal.querySelector("#add-card-image-input");
+const cardTemplate = document.querySelector("#card-template");
+const cardsList = document.querySelector(".cards__list");
+const cardSubmitButton = cardModal.querySelector(".modal__submit-button");
+
+const cardDeleteModal = document.querySelector("#delete-modal");
+const cardDeleteButton = document.querySelector("#card-delete-button");
+
+//Preview Elements
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 const closePreviewModalButton = previewModal.querySelector(
   ".modal__close-button-type-preview"
 );
-const cardSubmitButton = cardModal.querySelector(".modal__submit-button");
-
-//Card Elements
-const cardTemplate = document.querySelector("#card-template");
-const cardsList = document.querySelector(".cards__list");
 
 const config = {
   errorClass: "modal__error",
   inputErrorClass: "modal__input_error",
 };
 
+//functions
 function getCardElement(data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
@@ -170,42 +138,32 @@ function handleEditFormSubmit(evt) {
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  const inputValue = { name: cardCaptionInput.value, link: cardUrlInput.value };
-  const cardEl = getCardElement(inputValue);
-  cardsList.prepend(cardEl);
-  closeModal(cardModal);
-  disableButton(cardSubmitButton, settings);
-  evt.target.reset();
+  api
+    .addNewCard({
+      name: cardCaptionInput.value,
+      link: cardUrlInput.value,
+    })
+    .then((data) => {
+      const cardEl = getCardElement(data);
+      cardsList.prepend(cardEl);
+      closeModal(cardModal);
+      disableButton(cardSubmitButton, settings);
+      evt.target.reset();
+    })
+    .catch(console.error);
 }
-profileButtonEdit.addEventListener("click", () => {
-  const formElement = document.querySelector("#edit-modal .modal__form");
-  const inputList = formElement.querySelectorAll(".modal__input");
-  editModalDescriptionInput.value = profileDescription.textContent;
-  editModalNameInput.value = profileName.textContent;
-  openModal(editModal);
-  resetValidation(formElement, inputList, config);
-});
 
-editModalCloseBtn.addEventListener("click", () => {
-  closeModal(editModal);
-});
-
-cardModalButton.addEventListener("click", () => {
-  openModal(cardModal);
-});
-
-closeModalButton.addEventListener("click", () => {
-  closeModal(cardModal);
-});
-
-closePreviewModalButton.addEventListener("click", () => {
-  closeModal(previewModal);
-});
-
-//event listeners for forms
-editFormElement.addEventListener("submit", handleEditFormSubmit);
-
-cardForm.addEventListener("submit", handleCardFormSubmit);
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+  api
+    .editAvatar({
+      avatar: avatarUrlInput.value,
+    })
+    .then((data) => {
+      profileAvatar.src = data.avatar;
+      closeModal(avatarEditModal);
+    });
+}
 
 function handleModalClose(event) {
   if (event.key === "Escape" && event.type === "keydown") {
@@ -216,5 +174,48 @@ function handleModalClose(event) {
     closeModal(event.target);
   }
 }
+
+//Listeners
+profileButtonEdit.addEventListener("click", () => {
+  const formElement = document.querySelector("#edit-modal .modal__form");
+  const inputList = formElement.querySelectorAll(".modal__input");
+  editModalDescriptionInput.value = profileDescription.textContent;
+  editModalNameInput.value = profileName.textContent;
+  openModal(editModal);
+  resetValidation(formElement, inputList, config);
+});
+
+//close button listeners
+editModalCloseBtn.addEventListener("click", () => {
+  closeModal(editModal);
+});
+
+avatarCloseButton.addEventListener("click", () => {
+  closeModal(avatarEditModal);
+});
+
+closeModalButton.addEventListener("click", () => {
+  closeModal(cardModal);
+});
+
+closePreviewModalButton.addEventListener("click", () => {
+  closeModal(previewModal);
+});
+
+//open button listeners
+cardModalButton.addEventListener("click", () => {
+  openModal(cardModal);
+});
+
+avatarModalBtn.addEventListener("click", () => {
+  openModal(avatarEditModal);
+});
+
+//listeners for form handlers
+editFormElement.addEventListener("submit", handleEditFormSubmit);
+
+cardForm.addEventListener("submit", handleCardFormSubmit);
+
+avatarForm.addEventListener("submit", handleAvatarSubmit);
 
 enableValidation(settings);

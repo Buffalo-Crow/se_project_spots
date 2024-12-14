@@ -16,8 +16,7 @@ export class Api {
   }
 
   getAppInfo() {
-    //TODO call GetUserInfo in this array
-    return Promise.all([this.getInitialCards()]);
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
   }
 
   getInitialCards() {
@@ -44,6 +43,41 @@ export class Api {
         return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  editAvatar({ avatar }) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  addNewCard({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({ name, link }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  deleteCard(card) {
+    return fetch(`${this._baseUrl}/cards/ :cardId`, {
+      method: "DELETE",
+      headers: this._headers,
     });
   }
 }

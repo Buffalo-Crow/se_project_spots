@@ -19,11 +19,20 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%= require('./images/avatar.jpg')%>"
-            alt="Bessie Coleman avatar"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-btn">
+              <img
+                src="<%= require('./images/pencil_light.svg')%>"
+                alt="Bessie Coleman avatar"
+                class="profile__pencil-icon"
+              />
+            </button>
+            <img
+              src="<%= require('./images/avatar.jpg')%>"
+              alt="Bessie Coleman avatar"
+              class="profile__avatar"
+            />
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Aviator</p>
@@ -59,56 +68,51 @@
             </template>
           </ul>
         </section>
-      </main>
-      <footer class="footer">
-        <p class="footer__copyright">Jordan "Crow" Miller 2024 &copy;</p>
-      </footer>
-      <div class="modal" id="edit-modal">
-        <div class="modal__container">
-          <button
-            type="submit"
-            class="modal__close modal__close-button"
-          ></button>
-          <h2 class="modal__title">Edit Profile</h2>
-          <form name="edit-profile" class="modal__form" novalidate>
-            <label for="profile-name-input" class="modal__label"
-              >Name<input
-                id="profile-name-input"
-                type="text"
-                minlength="2"
-                maxlength="40"
-                class="modal__input"
-                placeholder="Type your name"
-                required
-              />
-              <span class="modal__error" id="profile-name-input-error"></span>
-            </label>
-            <label for="profile-description-input" class="modal__label"
-              >Description
-              <input
-                id="profile-description-input"
-                type="text"
-                minlength="2"
-                maxlength="200"
-                class="modal__input"
-                placeholder="Describe yourself"
-                required
-              />
-              <span
-                class="modal__error"
-                id="profile-description-input-error"
-              ></span>
-            </label>
-            <button type="submit" class="modal__submit-button">Save</button>
-          </form>
+        <div class="modal" id="edit-modal">
+          <div class="modal__container">
+            <button
+              type="submit"
+              class="modal__close modal__close-button"
+            ></button>
+            <h2 class="modal__title">Edit Profile</h2>
+            <form name="edit-profile" class="modal__form" novalidate>
+              <label for="profile-name-input" class="modal__label"
+                >Name<input
+                  id="profile-name-input"
+                  type="text"
+                  minlength="2"
+                  maxlength="40"
+                  class="modal__input"
+                  placeholder="Type your name"
+                  required
+                />
+                <span class="modal__error" id="profile-name-input-error"></span>
+              </label>
+              <label for="profile-description-input" class="modal__label"
+                >Description
+                <input
+                  id="profile-description-input"
+                  type="text"
+                  minlength="2"
+                  maxlength="200"
+                  class="modal__input"
+                  placeholder="Describe yourself"
+                  required
+                />
+                <span
+                  class="modal__error"
+                  id="profile-description-input-error"
+                ></span>
+              </label>
+              <button type="submit" class="modal__submit-button">Save</button>
+            </form>
+          </div>
         </div>
-      </div>
+
+
       <div class="modal" id="add-card-modal">
         <div class="modal__container">
-          <button
-            type="submit"
-            class="modal__close modal__close-button"
-          ></button>
+          <button type="submit" class="modal__close-button"></button>
           <h2 class="modal__title">New Post</h2>
           <form
             name="new__post"
@@ -148,7 +152,68 @@
           </form>
         </div>
       </div>
+      <footer class="footer">
+        <p class="footer__copyright">Jordan "Crow" Miller 2024 &copy;</p>
+      </footer>
     </div>
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
+        <button type="submit" class="modal__close modal__close-button"></button>
+        <h2 class="modal__title">Edit Profile Avatar</h2>
+        <form
+          name="avatar-profile"
+          class="modal__form"
+          id="avatar-edit-form"
+          novalidate
+        >
+          <label for="profile-avatar-input" class="modal__label"
+            >Profile Picture<input
+              id="profile-avatar-input"
+              name="image-link"
+              type="url"
+              minlength="2"
+              class="modal__input"
+              placeholder="Paste the link to an image here"
+              required
+            />
+            <span class="modal__error" id="profile-avatar-input-error"></span>
+          </label>
+          <button
+            type="submit"
+            class="modal__submit-button modal__avatar-submit"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="delete-modal">
+      <div class="modal__container modal__container-delete">
+        <button type="submit" class="modal__close modal__close-button-type-delete"></button>
+        <h2 class="modal__title delete_modal_title">Are you sure you want to delete this image?</h2>
+        <form
+          name="avatar-profile"
+          class="modal__form"
+          id="delete-form"
+          novalidate
+        >
+          <button
+            type="submit"
+            class="modal__submit-button"
+          >
+          Delete
+          </button>
+          <button
+            type="button"
+            class="modal__submit-button"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
+    </div>
+
+
     <div class="modal" id="preview-modal">
       <div class="modal__container-type-preview">
         <button
@@ -159,5 +224,6 @@
         <p class="modal__caption"></p>
       </div>
     </div>
+  </main>
   </body>
 </html>
