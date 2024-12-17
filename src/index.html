@@ -42,13 +42,13 @@
                 src="<%= require('./images/pencil_spots.svg')%>"
                 alt=" a pencil image"
               />
-              Edit
+              Edit Profile
             </button>
           </div>
           <button type="button" class="profile__button-new">
             <img
               class="profile__button-new-image"
-              src="<%= require('./images/plus_button_image.svg')%> "
+              src="<%= require('./images/plus_button_image.svg')%>"
               alt="a plus sign"
             />
             New Post
@@ -195,8 +195,8 @@
           </div>
         </div>
 
-        <div class="modal modal_opened" id="delete-modal">
-          <div class="modal__container modal__container-delete">
+        <div class="modal" id="delete-modal">
+          <div class="modal__container_delete">
             <button
               type="submit"
               class="modal__close modal__close-button-type_delete"
@@ -206,11 +206,14 @@
             </h2>
             <form
               name="delete-card"
-              class="modal__form"
+              class="modal__form_delete"
               id="delete-form"
               novalidate
             >
-              <button type="submit" class="modal__submit-button_delete">
+              <button
+                type="submit"
+                class="modal__submit-button modal__submit-button_delete"
+              >
                 Delete
               </button>
               <button type="button" class="modal__submit-button_cancel">
