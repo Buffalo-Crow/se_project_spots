@@ -38,7 +38,7 @@
   display: flex;
 }
 
-.modal__container-delete {
+.modal__container_delete {
   flex-direction: column;
   display: flex;
   max-width: 630px;

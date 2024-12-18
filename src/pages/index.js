@@ -81,6 +81,9 @@ const closePreviewModalButton = previewModal.querySelector(
   ".modal__close-button-type-preview"
 );
 
+// close buttons
+const closeButtons = document.querySelectorAll(".modal__close");
+
 let selectedCard;
 let selectedCardId;
 
@@ -172,6 +175,8 @@ function closeModal(modal) {
 // api handlers
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
+  const submitEditBtn = evt.submitter;
+  submitEditBtn.textContent = "Saving...";
   api
     .editUserInfo({
       name: editModalNameInput.value,
@@ -182,7 +187,10 @@ function handleEditFormSubmit(evt) {
       profileDescription.textContent = data.about;
       closeModal(editModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      submitEditBtn.textContent = "Save";
+    });
 }
 
 function handleCardFormSubmit(evt) {
@@ -237,16 +245,17 @@ function handleModalClose(event) {
 
 //Listeners
 profileButtonEdit.addEventListener("click", () => {
-  const formElement = document.querySelector("#edit-modal .modal__form");
-  const inputList = formElement.querySelectorAll(".modal__input");
+  //editFormElement
+  //const formElement = document.querySelector("#edit-modal .modal__form");
+  const inputList = editFormElement.querySelectorAll(".modal__input");
   editModalDescriptionInput.value = profileDescription.textContent;
   editModalNameInput.value = profileName.textContent;
   openModal(editModal);
-  resetValidation(formElement, inputList, config);
+  resetValidation(editFormElement, inputList, config);
 });
 
 //close button listeners
-editModalCloseBtn.addEventListener("click", () => {
+/*editModalCloseBtn.addEventListener("click", () => {
   closeModal(editModal);
 });
 
@@ -266,6 +275,12 @@ cancelButton.addEventListener("click", () => {
 });
 closePreviewModalButton.addEventListener("click", () => {
   closeModal(previewModal);
+});
+*/
+
+closeButtons.forEach((button) => {
+  const popup = button.closest(".modal");
+  button.addEventListener("click", () => closeModal(popup));
 });
 
 //open button listeners
