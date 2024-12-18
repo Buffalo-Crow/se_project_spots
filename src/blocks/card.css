@@ -51,7 +51,7 @@
 }
 
 .card__like-button_liked {
-  background-image: url(../images/Liked-Button.svg);
+  background-image: url(../images/Union.svg);
   opacity: 1;
   background-repeat: no-repeat;
 }
