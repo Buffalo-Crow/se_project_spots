@@ -255,28 +255,9 @@ profileButtonEdit.addEventListener("click", () => {
 });
 
 //close button listeners
-/*editModalCloseBtn.addEventListener("click", () => {
-  closeModal(editModal);
-});
-
-cardDeleteEscapebtn.addEventListener("click", () => {
-  closeModal(cardDeleteModal);
-});
-
-avatarCloseButton.addEventListener("click", () => {
-  closeModal(avatarEditModal);
-});
-
-closeModalButton.addEventListener("click", () => {
-  closeModal(cardModal);
-});
 cancelButton.addEventListener("click", () => {
   closeModal(cardDeleteModal);
 });
-closePreviewModalButton.addEventListener("click", () => {
-  closeModal(previewModal);
-});
-*/
 
 closeButtons.forEach((button) => {
   const popup = button.closest(".modal");
