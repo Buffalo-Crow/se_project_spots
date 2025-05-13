@@ -31,6 +31,14 @@ export class Api {
     }).then(this._checkResponse);
   }
 
+  editCaption({ name }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({ name }),
+    }).then(this._checkResponse);
+  }
+
   editAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",

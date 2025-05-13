@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Spots" />
     <meta name="author" content="Jordan Crow Miller" />
-    <meta name="keywords" content="HTML,CSS,???" />
+    <meta name="keywords" content="HTML,CSS,JavaScript,API" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Spots</title>
   </head>
   <body>
@@ -75,7 +76,12 @@
               class="modal__close modal__close-button"
             ></button>
             <h2 class="modal__title">Edit Profile</h2>
-            <form name="edit-profile" class="modal__form" novalidate>
+            <form
+              name="profile-edit-form"
+              class="modal__form"
+              id="edit-profile"
+              novalidate
+            >
               <label for="profile-name-input" class="modal__label"
                 >Name<input
                   id="profile-name-input"
@@ -210,7 +216,7 @@
             <form
               name="delete-card"
               class="modal__form_delete"
-              id="delete-form"
+              id="delete-card-form"
               novalidate
             >
               <button
