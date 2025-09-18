@@ -2,7 +2,7 @@
 
 ### Description
 
-This project is called Spots and Spots is a sleek photo sharing app that is appropriate for users on a wide range of devices. The warm colors give this project a welcoming experience for users. This is the third website that I have created and by far the most intrique code that I've written. I look forward to refactoring this in the future to implement new skills that I learn, as well as getting feedback for improvements.
+This project is called Spots and Spots is a sleek photo sharing app that is appropriate for users on a wide range of devices. The warm colors give this project a welcoming experience for users. This is the third website that I have created and by far the most intricate code that I've written. I look forward to refactoring this in the future to implement new skills that I learn, as well as getting feedback for improvements.
 
 Below is a screenshot of the Project Spots
 ![alt text](./images/demo/Screenshot%202024-09-01%20at%208.08.14 PM.png)
